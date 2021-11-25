@@ -1,5 +1,9 @@
 const OpenAI = require('openai-api');
 
-const OPENAI_API_KEY = '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'
+
+const urlParams = new URLSearchParams(window.location.search);
+const sk = urlParams.get('sk');
+
+const OPENAI_API_KEY = sk;
 
 export const openai = new OpenAI(OPENAI_API_KEY);
