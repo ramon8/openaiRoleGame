@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+/** @jsxImportSource @emotion/react */
+import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { Home } from "./pages/home";
+import { Game } from "./pages/game";
+import { AnimatePresence } from 'framer-motion';
+
+import { Terminal } from './pages/terminal';
+
+import {
+  Routes,
+  Route
+} from "react-router-dom";
+
+const styles = {
+  display: 'grid',
+  width: '100%',
+  height: '100%',
+  background: '#333032',
+  placeItems: 'center'
+}
+
+export const Context = React.createContext({});
+
+const App = () => {
+  const [transition, setTransition] = useState(true);
+  const location = useLocation();
+  const contextValue = {
+    transition, setTransition
+  }
+
+  return <div css={styles}>
+    <Context.Provider value={contextValue}>
+      <AnimatePresence exitBeforeEnter>
+        <Routes key={location.pathname} location={location}>
+          <Route path="/game" element={<Game />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Terminal />} />
+        </Routes>
+      </AnimatePresence>
+    </Context.Provider>
+  </div >
 }
 
 export default App;
