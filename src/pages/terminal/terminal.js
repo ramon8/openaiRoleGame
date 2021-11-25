@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /** @jsxImportSource @emotion/react */
 import { useState, useRef, useEffect } from 'react';
 
@@ -35,12 +36,6 @@ const cursor = {
     background: 'white',
     width: '.6rem',
     height: '3px'
-}
-
-const containerLog = {
-    display: 'grid',
-    gridAutoFlow: 'rows',
-    color: 'white'
 }
 
 export const Terminal = () => {
